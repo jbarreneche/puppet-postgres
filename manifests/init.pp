@@ -13,12 +13,13 @@
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 class postgres {
-	package { [postgresql, ruby-postgres, postgresql-server]: ensure => installed }
+  package { [postgresql]: ensure => installed }
 
-    service { postgresql:
-        ensure => running,
-        enable => true,
-        hasstatus => true,
-        subscribe => [Package[postgresql-server], Package[postgresql]]
-    }
+  service { postgresql:
+    name => 'postgresql-8.4',
+    ensure => running,
+    enable => true,
+    hasstatus => true,
+    subscribe => [Package[postgresql]]
+  }
 }
